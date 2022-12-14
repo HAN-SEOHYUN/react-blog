@@ -39,7 +39,20 @@ const ListPage = () => {
           key={post.id} 
           titile={post.titile} 
           onClick={()=>history.push('/blogs/edit')} 
-          />
+          >
+          <div>
+            <button 
+              className = "btn btn-danger btn-sm"
+              //onClick= {()=>console.log('delete')} //이벤트 버블링 발생 : 로그 찍히고 edit page 로 이동됨
+              onClick= {(e)=>{
+                e.stopPropagation(); //퍼지는 것을 막아주셈
+                console.log('delete blog'); // 콘솔 로그만 잘 찍힘
+              }} 
+              >
+              Delete
+            </button>
+          </div>
+          </Card>
           //props : 자식 컴포넌트에 넘기고싶은 이름은 속성으로 적고, 넘길 데이터를 {} 안에 넣어준다.
           //Card 태그에 직접 onClick 을 사용할 수 없다. 직접 CArd 컴포넌트에 들어가서 이벤트를 걸어줘야 함 (그래서 props 로 전달)
           );
