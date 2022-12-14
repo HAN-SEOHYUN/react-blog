@@ -36,7 +36,48 @@ const ListPage = () => {
     getPosts(); //useEffect 는 getPost 가 한번만 실행되도록 도와줌
   }, []);
 
-  return (
+const renderBlogList = () =>{
+  if(loading) { //만약 로딩이 있으면 spinner 를 보여줘라
+    return (
+      <div className = "d-flex justify-content-center">
+      <div className ="spinner-border" role ="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+    </div> //아래 : 로딩중이 아닐경우 여기를 보여줘라
+    );
+  }
+
+  if(posts.length === 0) { //post 가 없다면 문구를 보여줘라
+    return (<div>No blog posts found</div>)
+  }
+
+  return posts.map((post) => { //post 의 길이가 0보다 클 경우에만 map 함수 실행
+    //post 데이터는 ListPage 에서는 확인가능 하지만,
+    //자식 컴포넌트 Card 는 확인할 수 없다. 따라서 props 를 사용 !
+    //map loop
+    return (
+      <Card 
+      key={post.id} 
+      titile={post.titile} 
+      onClick={()=>history.push('/blogs/edit')} 
+      >
+      <div>
+        <button 
+          className = "btn btn-danger btn-sm"
+          //onClick= {()=>console.log('delete')} //이벤트 버블링 발생 : 로그 찍히고 edit page 로 이동됨
+          onClick= { (e) => deleteBlog (e, post.id) } //post id 를 함수로 넘겨주기
+          >
+          Delete
+        </button>
+      </div>
+      </Card>
+      //props : 자식 컴포넌트에 넘기고싶은 이름은 속성으로 적고, 넘길 데이터를 {} 안에 넣어준다.
+      //Card 태그에 직접 onClick 을 사용할 수 없다. 직접 CArd 컴포넌트에 들어가서 이벤트를 걸어줘야 함 (그래서 props 로 전달)
+      );
+  })
+};
+
+return (
     <div>
       <div className="d-flex justify-content-between"> 
         <h1>Blogs</h1>
@@ -47,36 +88,7 @@ const ListPage = () => {
         Create New 
         </Link>
       </div>
-      {loading ? ( //로딩중일경우 (여기서부터 삼항조건연산자가 2번 사용됨)
-        <div className = "d-flex justify-content-center">
-          <div className ="spinner-border" role ="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-        </div> //아래 : 로딩중이 아닐경우
-      ) : posts.length > 0 ? posts.map((post) => { //post 의 길이가 0보다 클 경우에만 map 함수 실행
-        //post 데이터는 ListPage 에서는 확인가능 하지만,
-        //자식 컴포넌트 Card 는 확인할 수 없다. 따라서 props 를 사용 !
-        //map loop
-        return (
-          <Card 
-          key={post.id} 
-          titile={post.titile} 
-          onClick={()=>history.push('/blogs/edit')} 
-          >
-          <div>
-            <button 
-              className = "btn btn-danger btn-sm"
-              //onClick= {()=>console.log('delete')} //이벤트 버블링 발생 : 로그 찍히고 edit page 로 이동됨
-              onClick= { (e) => deleteBlog (e, post.id) } //post id 를 함수로 넘겨주기
-              >
-              Delete
-            </button>
-          </div>
-          </Card>
-          //props : 자식 컴포넌트에 넘기고싶은 이름은 속성으로 적고, 넘길 데이터를 {} 안에 넣어준다.
-          //Card 태그에 직접 onClick 을 사용할 수 없다. 직접 CArd 컴포넌트에 들어가서 이벤트를 걸어줘야 함 (그래서 props 로 전달)
-          );
-      }) : 'No blog posts found'}
+      {renderBlogList()}
     </div>
   );
 };
