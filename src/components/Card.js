@@ -1,4 +1,4 @@
-import propTypes from 'prop-types'
+import PropTypes from 'prop-types'
 const Card = ({ title, children, onClick }) => {
   //자식 컴포넌트에서 props 받기
 
@@ -22,16 +22,16 @@ const Card = ({ title, children, onClick }) => {
 };
 
 Card.propTypes = { //정해진 type 외 다른 type 이 들어왔을 경우 console 을 통해 warning
-    title : propTypes.string,
-    children : propTypes.element,
-    onClick : propTypes.func, //Card 컴포넌트에서만 onClick 이벤트 가능
+    title : PropTypes.string.isRequired,
+    children : PropTypes.element,
+    onClick : PropTypes.func, //Card 컴포넌트에서만 onClick 이벤트 가능
 };
 
 
 //props 의 default 값을 설정할 수 있음
 Card.defaultProps = {
-    title : 'title',
-    onClick: ()=> {}
+    children : null,
+    onClick: ()=> {},
 };
 
 //{children && <div>buttons</div>} : children 이 있을 경우에 보여줌

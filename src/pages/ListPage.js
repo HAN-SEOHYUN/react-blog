@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Card from "../components/Card";
 import {Link} from 'react-router-dom'
 import {useHistory} from 'react-router';
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const ListPage = () => {
   //List 가 실행이 되면
@@ -39,11 +40,7 @@ const ListPage = () => {
 const renderBlogList = () =>{
   if(loading) { //만약 로딩이 있으면 spinner 를 보여줘라
     return (
-      <div className = "d-flex justify-content-center">
-      <div className ="spinner-border" role ="status">
-        <span className="visually-hidden">Loading...</span>
-      </div>
-    </div> //아래 : 로딩중이 아닐경우 여기를 보여줘라
+      <LoadingSpinner/>
     );
   }
 
@@ -58,7 +55,7 @@ const renderBlogList = () =>{
     return (
       <Card 
       key={post.id} 
-      titile={post.titile} 
+      title={post.title} 
       onClick={()=>history.push('/blogs/edit')} 
       >
       <div>
