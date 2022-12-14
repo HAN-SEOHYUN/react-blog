@@ -8,11 +8,13 @@ const ListPage = () => {
   //List 가 실행이 되면
   const history = useHistory(); //history push 가능
   const [posts, setPosts] = useState([]); // post 값이 바뀔때마다 리랜더링이 됨. (무한반복의 가능성이 있음)
+  const [loading, setLoading] = useState(true);
 
   const getPosts = () => {
     axios.get("http://localhost:3001/posts").then((res) => {
       console.log(res.data); //데이터 받아오기
       setPosts(res.data); //받아온 데이터를 state 안에 넣어주기
+      setLoading(false); //로딩이 완료되면 false 로 변경
     });
   };
 
@@ -45,7 +47,13 @@ const ListPage = () => {
         Create New 
         </Link>
       </div>
-      {posts.map((post) => {
+      {loading ? ( //로딩중일경우 (여기서부터 삼항조건연산자가 2번 사용됨)
+        <div className = "d-flex justify-content-center">
+          <div className ="spinner-border" role ="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div> //아래 : 로딩중이 아닐경우
+      ) : posts.length > 0 ? posts.map((post) => { //post 의 길이가 0보다 클 경우에만 map 함수 실행
         //post 데이터는 ListPage 에서는 확인가능 하지만,
         //자식 컴포넌트 Card 는 확인할 수 없다. 따라서 props 를 사용 !
         //map loop
@@ -68,7 +76,7 @@ const ListPage = () => {
           //props : 자식 컴포넌트에 넘기고싶은 이름은 속성으로 적고, 넘길 데이터를 {} 안에 넣어준다.
           //Card 태그에 직접 onClick 을 사용할 수 없다. 직접 CArd 컴포넌트에 들어가서 이벤트를 걸어줘야 함 (그래서 props 로 전달)
           );
-      })}
+      }) : 'No blog posts found'}
     </div>
   );
 };

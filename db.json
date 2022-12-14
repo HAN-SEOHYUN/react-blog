@@ -1,9 +1,9 @@
 {
   "posts": [
     {
-      "title": "test",
-      "body": "test",
-      "id": 3
+      "title": "서현타이틀",
+      "body": "new Post",
+      "id": 1
     }
   ]
 }
