@@ -15,6 +15,21 @@ const ListPage = () => {
       setPosts(res.data); //받아온 데이터를 state 안에 넣어주기
     });
   };
+
+  const deleteBlog = (e, id)=>{
+    e.stopPropagation(); //퍼지는 것을 막아주셈
+    console.log('delete blog'); // 콘솔 로그만 잘 찍힘
+    axios.delete(`http://localhost:3001/posts/${id}`).then(()=>{
+      setPosts(prevPosts => { //삭제된 post 는 리스트에서 업데이트 시켜서 없애주는 작업
+        //기존에 있던 POST 들의 정보를 filter 함수를 통해 걸러준다. 
+        //post 가 삭제하려는 id 와 같지 않을 경우에만 남겨둔다. 
+        return prevPosts.filter(post => {
+          return post.id !== id;
+        })
+      })
+    });
+  }
+
   useEffect(() => {
     getPosts(); //useEffect 는 getPost 가 한번만 실행되도록 도와줌
   }, []);
@@ -44,10 +59,7 @@ const ListPage = () => {
             <button 
               className = "btn btn-danger btn-sm"
               //onClick= {()=>console.log('delete')} //이벤트 버블링 발생 : 로그 찍히고 edit page 로 이동됨
-              onClick= {(e)=>{
-                e.stopPropagation(); //퍼지는 것을 막아주셈
-                console.log('delete blog'); // 콘솔 로그만 잘 찍힘
-              }} 
+              onClick= { (e) => deleteBlog (e, post.id) } //post id 를 함수로 넘겨주기
               >
               Delete
             </button>
