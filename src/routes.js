@@ -20,7 +20,7 @@ const routes =[ //새로운 페이지는 배열로 추가
     component: CreatePage
   },
   {
-    path:'/blogs/edit',
+    path:'/blogs/:id/edit',
     component: EditPage
   },
   {
