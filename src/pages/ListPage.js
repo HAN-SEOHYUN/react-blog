@@ -2,9 +2,11 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import Card from "../components/Card";
 import {Link} from 'react-router-dom'
+import {useHistory} from 'react-router';
 
 const ListPage = () => {
   //List 가 실행이 되면
+  const history = useHistory(); //history push 가능
   const [posts, setPosts] = useState([]); // post 값이 바뀔때마다 리랜더링이 됨. (무한반복의 가능성이 있음)
 
   const getPosts = () => {
@@ -36,7 +38,7 @@ const ListPage = () => {
           <Card 
           key={post.id} 
           titile={post.titile} 
-          onClick={()=>{console.log('클릭')}}
+          onClick={()=>history.push('/blogs/edit')} 
           />
           //props : 자식 컴포넌트에 넘기고싶은 이름은 속성으로 적고, 넘길 데이터를 {} 안에 넣어준다.
           //Card 태그에 직접 onClick 을 사용할 수 없다. 직접 CArd 컴포넌트에 들어가서 이벤트를 걸어줘야 함 (그래서 props 로 전달)
