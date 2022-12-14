@@ -32,6 +32,14 @@ const BlogForm = ({editing}) => { //EditPage 에서 editing props 를 받아옴
     return title !== originalTitle || body !== originalBody //둘 중 하나라도 변경되면 return true
   }
 
+  const goBack = () => {
+    if(editing){
+      history.push(`/blogs/${id}`);
+    }else{
+      history.push(`/blogs`);
+    }
+  };
+
   const onSubmit = () => {
     if(editing) {
       axios.patch(`http://localhost:3001/posts/${id}`, {
@@ -77,12 +85,18 @@ const BlogForm = ({editing}) => { //EditPage 에서 editing props 를 받아옴
           rows={15}
         />
       </div>
-      <button 
+      <button  //수정버튼
       className="btn btn-primary" 
       onClick={onSubmit}
       disabled = {editing && !isEdited() } //post 가 아니라 edit 페이지이고 && edit 이 되지 않은 경우에만 비활성화
       >
         {editing ? 'Edit' : 'Post'} 
+      </button>
+
+      <button //뒤로가기 버튼 (detail Page)
+      className="btn btn-danger ms-2"
+      onClick={goBack}>
+        Cancle
       </button>
     </div>
   );
