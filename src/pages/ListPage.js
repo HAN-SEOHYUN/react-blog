@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import Card from '../components/Card';
+import Card from "../components/Card";
+import {Link} from 'react-router-dom'
 
 const ListPage = () => {
   //List 가 실행이 되면
@@ -18,15 +19,20 @@ const ListPage = () => {
 
   return (
     <div>
-      <h1>Blogs</h1>
-      {posts.map((post) => { //post 데이터는 ListPage 에서는 확인가능하지만, 
-      //자식 컴포넌트 Card 는 확인할 수 없다. 따라서 props 를 사용 !
+      <div className="d-flex justify-content-between"> 
+        <h1>Blogs</h1>
+        <Link to="/blogs/create" className="btn btn-success mb-2"> Create New 
+        </Link>
+      </div>
+      {posts.map((post) => {
+        //post 데이터는 ListPage 에서는 확인가능하지만,
+        //자식 컴포넌트 Card 는 확인할 수 없다. 따라서 props 를 사용 !
         //map loop
         return (
-            <Card key={post.id} > 
-              <button>button</button>
-            </Card>
-            //props : 자식 컴포넌트에 넘기고싶은 이름은 속성으로 적고, 넘길 데이터를 {} 안에 넣어준다.
+          <Card key={post.id}>
+            <div>hi</div>
+          </Card>
+          //props : 자식 컴포넌트에 넘기고싶은 이름은 속성으로 적고, 넘길 데이터를 {} 안에 넣어준다.
         );
       })}
     </div>
