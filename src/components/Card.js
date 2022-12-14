@@ -9,7 +9,7 @@ const Card = ({ title, children, onClick }) => {
 
   return (
     <div 
-    className="card mb-3"
+    className="card mb-3 cursor-pointer"
     onClick = {onClick}> 
       <div className="card-body">
         <div className="d-flex justify-content-between">

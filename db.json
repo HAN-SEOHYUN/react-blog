@@ -1,24 +1,9 @@
 {
   "posts": [
     {
-      "title": "제목",
-      "body": "내용",
-      "id": 1
-    },
-    {
-      "title": "test",
-      "body": "test",
-      "id": 2
-    },
-    {
       "title": "test",
       "body": "test",
       "id": 3
-    },
-    {
-      "title": "test",
-      "body": "test",
-      "id": 4
     }
   ]
 }
