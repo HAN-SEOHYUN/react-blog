@@ -56,7 +56,7 @@ const renderBlogList = () =>{
       <Card 
       key={post.id} 
       title={post.title} 
-      onClick={()=>history.push('/blogs/edit')} 
+      onClick={()=>history.push(`/blogs/${post.id}`)} // url 에 변수 사용을 위해서는 백틱 변경 잊지말기 ~! 
       >
       <div>
         <button 

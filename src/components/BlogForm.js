@@ -9,9 +9,10 @@ const BlogForm = () => {
     const [body, setBody] = useState("");
     const onSubmit = () => {
       console.log(title, body);
-      axios.post("http://localhost:3001/posts", {
+      axios.post("http://localhost:3001/posts", { 
         title: title,
         body: body,
+        createdAt : Date.now() // Date.now() : js 에서 시간을 가져오기
       }).then(()=>{
         history.push('/blogs');
       })
