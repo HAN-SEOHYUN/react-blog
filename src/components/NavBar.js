@@ -13,9 +13,9 @@ const NavBar = () => {
               activeClassName="active" //NavLink 변경 후 사용가능 - 활성화되었을 때 밝게
               className="nav-link"
               aria-current="page"
-              to="/blogs"
+              to="/memos"
             >
-              Blogs
+              MEMO
             </NavLink>
           </li>
         </ul>

@@ -13,11 +13,9 @@ const BlogForm = ({editing}) => { //EditPage 에서 editing props 를 받아옴
   const [originalTitle, setOriginalTitle ] = useState(""); 
   const [originalBody, setOriginalBody ] = useState(""); 
 
-
-
   useEffect(()=>{ //수정할 텍스트 화면에 뿌리기
     if(editing){ //editing 의 경우만 요청을 보내기 (create 할 때는 요청 못보냄 {보낼 요청이 없삼})
-      axios.get(`http://localhost:3001/posts/${id}`).then(res => { 
+      axios.get(`http://localhost:3001/memos/${id}`).then(res => { 
         //수정페이지를 열었을 때 처음에는 title = originalTitle
         //그치만 from 에서 수정을 하고나면 state 가 변경되어 title, body 는 달라지게 된다. 
         setTitle(res.data.title);
@@ -34,36 +32,36 @@ const BlogForm = ({editing}) => { //EditPage 에서 editing props 를 받아옴
 
   const goBack = () => {
     if(editing){
-      history.push(`/blogs/${id}`);
+      history.push(`/memos/${id}`);
     }else{
-      history.push(`/blogs`);
+      history.push(`/memos`);
     }
   };
 
   const onSubmit = () => {
     if(editing) {
-      axios.patch(`http://localhost:3001/posts/${id}`, {
+      axios.patch(`http://localhost:3001/memos/${id}`, {
         title: title,
         body: body,
       }).then((res)=>{
-        history.push(`/blogs/${id}`)
+        history.push(`/memos/${id}`)
       })
     }else{
     axios
-      .post("http://localhost:3001/posts", {
+      .post("http://localhost:3001/memos", {
         title: title,
         body: body,
         createdAt: Date.now(), // Date.now() : js 에서 시간을 가져오기
       })
       .then(() => {
-        history.push("/blogs");
+        history.push("/memos");
       });
     }
   };
 
   return (
     <div>
-      <h1>{editing ? 'Edit' : 'Create'} a Blog Post</h1>
+      <h1>{editing ? 'Edit' : 'Create'} Post memo</h1>
       <div className="mb-3">
         <label className="form-label">Title</label>
         <input
