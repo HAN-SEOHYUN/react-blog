@@ -21,7 +21,6 @@ const ListPage = () => {
 
   const deleteBlog = (e, id) => {
     e.stopPropagation(); //퍼지는 것을 막아주셈
-    console.log("delete blog"); // 콘솔 로그만 잘 찍힘
     axios.delete(`http://localhost:3001/memos/${id}`).then(() => {
       setPosts((prevPosts) => {
         //삭제된 post 는 리스트에서 업데이트 시켜서 없애주는 작업
@@ -79,8 +78,8 @@ const ListPage = () => {
   return (
     <div>
       <div className="d-flex justify-content-between">
-        <h1>Blogs</h1>
-        <Link to="/blogs/create" className="btn btn-success mb-2">
+        <h1>메모장</h1>
+        <Link to="/memos/create" className="btn btn-success mb-2">
           Create New
         </Link>
       </div>

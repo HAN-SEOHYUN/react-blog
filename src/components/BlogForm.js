@@ -32,9 +32,9 @@ const BlogForm = ({editing}) => { //EditPage 에서 editing props 를 받아옴
 
   const goBack = () => {
     if(editing){
-      history.push(`/blogs/${id}`);
+      history.push(`/memos/${id}`);
     }else{
-      history.push(`/blogs`);
+      history.push(`/memos`);
     }
   };
 
@@ -44,7 +44,7 @@ const BlogForm = ({editing}) => { //EditPage 에서 editing props 를 받아옴
         title: title,
         body: body,
       }).then((res)=>{
-        history.push(`/blogs/${id}`)
+        history.push(`/memos/${id}`)
       })
     }else{
     axios
@@ -61,7 +61,7 @@ const BlogForm = ({editing}) => { //EditPage 에서 editing props 를 받아옴
 
   return (
     <div>
-      <h1>{editing ? 'Edit' : 'Create'} a Blog Post</h1>
+      <h1>{editing ? 'Edit' : 'Create'} Post memo</h1>
       <div className="mb-3">
         <label className="form-label">Title</label>
         <input

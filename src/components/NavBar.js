@@ -15,7 +15,7 @@ const NavBar = () => {
               aria-current="page"
               to="/memos"
             >
-              Blogs
+              MEMO
             </NavLink>
           </li>
         </ul>
