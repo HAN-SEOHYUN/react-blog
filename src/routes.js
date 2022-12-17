@@ -12,19 +12,19 @@ const routes =[ //새로운 페이지는 배열로 추가
     component: HomePage
   },
   {
-    path:'/blogs',
+    path:'/memos',
     component: ListPage
   },
   {
-    path:'/blogs/create',
+    path:'/memos/create',
     component: CreatePage
   },
   {
-    path:'/blogs/:id/edit',
+    path:'/memos/:id/edit',
     component: EditPage
   },
   {
-    path: '/blogs/:id', //얘를 맞춰줘야 됨
+    path: '/memos/:id', //얘를 맞춰줘야 됨
     component:ShowPage
   },
 ];

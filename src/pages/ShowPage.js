@@ -11,7 +11,7 @@ const ShowPage = () => {
   const [loading, setLoading] = useState(true);
 
   const getPost = (id) => {
-    axios.get(`http://localhost:3001/posts/${id}`).then((res) => {
+    axios.get(`http://localhost:3001/memos/${id}`).then((res) => {
       setPost(res.data);
       setLoading(false);
     });
@@ -37,10 +37,7 @@ const ShowPage = () => {
       <div className="d-flex">
         <h1 className="flex-grow-1"> {post.title}</h1>
         <div>
-          <Link 
-          className="btn btn-primary"
-          to={`/blogs/${id}/edit`}
-          >
+          <Link className="btn btn-primary" to={`/blogs/${id}/edit`}>
             Edit
           </Link>
         </div>
