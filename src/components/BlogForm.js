@@ -61,7 +61,7 @@ const BlogForm = ({editing}) => { //EditPage 에서 editing props 를 받아옴
 
   return (
     <div>
-      <h1>{editing ? 'Edit' : 'Create'} Post memo</h1>
+      <h1>{editing ? 'Edit' : 'Create'} memo</h1>
       <div className="mb-3">
         <label className="form-label">Title</label>
         <input
