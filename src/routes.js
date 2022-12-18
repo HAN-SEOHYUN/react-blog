@@ -32,7 +32,7 @@ const routes =[ //새로운 페이지는 배열로 추가
 export default routes;
 
 
-//app.js
+// app.js
 // <Route path="/" exact>
 //             <HomePage />
 //           </Route>,

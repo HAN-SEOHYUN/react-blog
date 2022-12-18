@@ -23,7 +23,7 @@ const Card = ({ title, children, onClick }) => {
 
 Card.propTypes = { //정해진 type 외 다른 type 이 들어왔을 경우 console 을 통해 warning
     title : PropTypes.string.isRequired,
-    children : PropTypes.element,
+    children : PropTypes.element, //react 엘리먼트
     onClick : PropTypes.func, //Card 컴포넌트에서만 onClick 이벤트 가능
 };
 

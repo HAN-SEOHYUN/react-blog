@@ -1,22 +1,22 @@
 {
   "memos": [
     {
-      "title": "update",
-      "body": "update ! ",
-      "createdAt": 1670999516951,
+      "title": "리액트 메모장",
+      "body": "굿이예요 ~ 만족스러워 ~",
+      "createdAt": 1671310331099,
+      "id": 3
+    },
+    {
+      "title": "오늘 할일",
+      "body": "공부",
+      "createdAt": 1671349242098,
       "id": 4
     },
     {
-      "title": "redux",
-      "body": "redux",
-      "createdAt": 1671002738611,
+      "title": "내일 할일",
+      "body": "출근",
+      "createdAt": 1671349252941,
       "id": 5
-    },
-    {
-      "title": "메모장",
-      "body": "수정",
-      "createdAt": 1671309677842,
-      "id": 6
     }
   ]
 }
